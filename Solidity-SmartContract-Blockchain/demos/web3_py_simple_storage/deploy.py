@@ -71,7 +71,7 @@ signed_transaction = w3.eth.account.sign_transaction(transaction, private_key)
 # 3. Send a transaction
 tx_hash = w3.eth.sendRawTransaction(signed_transaction.rawTransaction)
 tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
-
+best 
 
 # Working with the contract
 ### YOU ALWAYS NEED TWO THINGS:
