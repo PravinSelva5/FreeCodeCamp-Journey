@@ -19,7 +19,7 @@ def deploy_fund_me():
         ]
     else:
         deploy_mocks()
-        print(f"Mocks Deployed!")
+        price_feed_address = MockV3Aggregator[-1].address
 
     fund_me = FundMe.deploy(
         price_feed_address,
@@ -27,6 +27,7 @@ def deploy_fund_me():
         publish_source=config["networks"][network.show_active()].get("verify"),
     )
     print(f"Contract deployed to {fund_me.address}")
+    return fund_me
 
 
 def main():
