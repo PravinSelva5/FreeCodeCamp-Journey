@@ -20,6 +20,7 @@ contract Lottery is VRFConsumerBase, Ownable {
     LOTTERY_STATE public lottery_state;
     uint256 public fee;
     bytes32 public keyhash; // allows us to uniquely identify chainlink nodes
+    event RequestedRandomness(bytes32 requestId);
 
     constructor(
         address _priceFeedAddress,
@@ -71,6 +72,7 @@ contract Lottery is VRFConsumerBase, Ownable {
         // ) % players.length;
         lottery_state = LOTTERY_STATE.CALCULATING_WINNER;
         bytes32 requestId = requestRandomness(keyhash, fee);
+        emit RequestedRandomness(requestId);
     }
 
     // Only VRF coordinator can call this function, which is why 'internal' keyword is used.
